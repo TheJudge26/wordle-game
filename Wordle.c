@@ -1,5 +1,5 @@
 #include <stdio.h>
-// need to make my own (unistd.h)
+#include "fetch.h"// my own lib to readfile()
 #include <stdlib.h>
 #include <string.h>
 
