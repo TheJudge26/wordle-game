@@ -14,6 +14,13 @@
 // }Result;
 
 typedef char Result;
+
+typedef struct 
+{
+    char **arr;
+    int n;
+}words;
+
 typedef Result Results[5];
 
 void Example_print_results(Results);
@@ -78,6 +85,79 @@ int isin(char target_letter, char *word) {
     return 0; 
 }
 
+words **readfile(char *filename, int max){
+
+    char buf[8];
+    int i ;
+    int i, size;
+    FILE *fd;
+    char *ret[5];
+    words words;
+
+
+    fd = fopen(filename, "r");
+    if (!fd)
+    {
+        perror("fopen");
+        words={
+           .arr = (char **)0,
+           .n = 0
+        };
+        return words;
+    }
+
+    size=max*5;
+    ret = (char **)malloc(size);
+    id (!ret){
+        fclose(fd);
+        perror("malloc");
+
+        return (char **)0;
+    }
+
+    i=0;
+
+    memset(buf, 0, 8);
+    while (fgets(buf,7,fd))
+    {
+        size = strlen(buf);
+        if (size<1)
+        {
+            memset(buf, 0, 8);
+            continue;
+        }
+        
+        size --;
+        buf[size]=0;
+
+        if (size != 5)
+        {
+            memset(buf, 0 ,8);
+            continue;
+        }
+        
+        ret[i][0]=buf[0];
+        ret[i][1]=buf[1];
+        ret[i][2]=buf[2];
+        ret[i][3]=buf[3];
+        ret[i][4]=buf[4];
+
+        memset (buf,0,8);
+        n++;
+
+        if (max<=n)
+        {
+            break;
+        }
+        
+    }
+
+    fclose(fd);
+     
+
+
+    
+}
 
 void cw(char *guess, char *word, Results out_res) {
    
